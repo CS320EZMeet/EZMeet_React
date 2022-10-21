@@ -18,7 +18,7 @@ const App = ()=> (
   <Routes>
     <Route path='/' element={<Home />} />
     <Route path='/help' element={<Help />} />
-    <Route path='/user' element={<User />} />
+    <Route path='/user/:user_id' element={<User />} />
     <Route path='/group' element={<Group />} />
     <Route path='/login' element={<Login />} />
     <Route path='/signup' element={<SignUp />} />
