@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders home correctly 1`] = `
+<div>
+  <h1>
+    Welcome to EzMeet
+  </h1>
+</div>
+`;

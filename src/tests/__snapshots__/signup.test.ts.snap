@@ -5,3 +5,77 @@ exports[`renders correctly 1`] = `
   I'm the sign up page
 </h1>
 `;
+
+exports[`renders signup correctly 1`] = `
+<div
+  className="col-md-12"
+>
+  <div
+    className="card card-container"
+  >
+    <form
+      action="#"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="username"
+        >
+           Username 
+        </label>
+        <input
+          className="form-control"
+          name="username"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="text"
+          value="username"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="email"
+        >
+           Email 
+        </label>
+        <input
+          className="form-control"
+          name="email"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="email"
+          value="email"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="password"
+        >
+           Password 
+        </label>
+        <input
+          className="form-control"
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="password"
+          value="password"
+        />
+      </div>
+      <button
+        className="btn btn-primary btn-block"
+        type="submit"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>
+`;
