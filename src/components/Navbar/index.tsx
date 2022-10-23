@@ -28,25 +28,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-
-
-
-
-/*
-const Navbar = () => {
-    const user_id = 1
-    return (
-    <nav className="nav-bar">
-        <a className="site-name"> <NavLink to="/">Home</NavLink> </a>
-        <ul>
-            <li><a><NavLink to="/help">Help</NavLink></a></li>
-            <li><a><NavLink to={"/user/" + user_id}>User</NavLink></a></li>
-            <li><a><NavLink to="/group">Group</NavLink></a></li>
-            <li><a><NavLink to="/login">Login</NavLink></a></li>
-            <li><a><NavLink to="/signup">Sign Up</NavLink></a></li>
-        </ul>
-    </nav>
-    )
-}
-*/
