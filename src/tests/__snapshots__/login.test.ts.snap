@@ -5,3 +5,60 @@ exports[`renders correctly 1`] = `
   I'm the login page
 </h1>
 `;
+
+exports[`renders login correctly 1`] = `
+<div
+  className="col-md-12"
+>
+  <div
+    className="card card-container"
+  >
+    <form
+      action="#"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="username"
+        >
+          Username
+        </label>
+        <input
+          className="form-control"
+          name="username"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="text"
+          value="username"
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          className="form-control"
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="password"
+          value="password"
+        />
+      </div>
+      <button
+        className="btn btn-primary btn-block"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
+`;

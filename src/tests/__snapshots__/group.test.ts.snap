@@ -27,3 +27,31 @@ exports[`renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders group correctly 1`] = `
+<div
+  className="groupCard card"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="my-auto mx-auto col-lg-5 col-md-5"
+    >
+      <img
+        className="card-img-top"
+        src="Togepi.jpeg"
+      />
+    </div>
+    <div
+      className="my-auto mx-auto text-center col"
+    >
+      <p
+        className="card-text"
+      >
+        Bob
+      </p>
+    </div>
+  </div>
+</div>
+`;

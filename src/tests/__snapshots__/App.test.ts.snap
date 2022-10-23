@@ -1,5 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders app correctly 1`] = `
+Array [
+  <nav
+    className="nav-bar"
+  >
+    <a
+      aria-current="page"
+      className="active"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+    <a
+      className=""
+      href="/help"
+      onClick={[Function]}
+    >
+      Help
+    </a>
+    <a
+      className=""
+      href="/user/1"
+      onClick={[Function]}
+    >
+      User
+    </a>
+    <a
+      className=""
+      href="/group"
+      onClick={[Function]}
+    >
+      Group
+    </a>
+    <a
+      className=""
+      href="/login"
+      onClick={[Function]}
+    >
+      Login
+    </a>
+    <a
+      className=""
+      href="/signup"
+      onClick={[Function]}
+    >
+      Sign Up
+    </a>
+  </nav>,
+  <div
+    className="content"
+  >
+    <div>
+      <h1>
+        Welcome to EzMeet
+      </h1>
+    </div>
+  </div>,
+]
+`;
+
 exports[`renders correctly 1`] = `
 Array [
   <nav
