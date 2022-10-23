@@ -11,20 +11,21 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
 
-
 const App = ()=> (
   <Router>
     <Navbar />
-  <Routes>
-    <Route path='/' element={<Home />} />
-    <Route path='/help' element={<Help />} />
-    <Route path='/user' element={<User />} />
-    <Route path='/group' element={<Group />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/signup' element={<SignUp />} />
-  </Routes>
+  <div className='content'>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/help' element={<Help />} />
+      <Route path='/user/:user_id' element={<User />} />
+      <Route path='/group' element={<Group />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/signup' element={<SignUp />} />
+    </Routes>
+  </div>
   </Router>
+  
 );
-
 
 export default App;

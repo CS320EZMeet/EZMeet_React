@@ -1,8 +1,9 @@
 import React from "react";
+import GroupCard from "../components/Cards";
 
 
 const Group = () => {
-    return (<h1>I'm the group page</h1>)
+    return (<GroupCard user_id="Bob"/>)
 }
 
 export default Group;

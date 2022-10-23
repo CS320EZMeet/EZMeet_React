@@ -2,7 +2,12 @@ import React from "react";
 
 
 const Home = () => {
-    return (<h1>I'm the home page</h1>)
+    return (
+    <div>
+        <h1>Welcome to EzMeet</h1>
+    </div>
+    )
+
 }
 
 export default Home;
