@@ -15,12 +15,14 @@ const Navbar = () => {
     const user_id = 1
     return (
     <nav className="nav-bar">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/help">Help</NavLink>
-        <NavLink to={"/user/" + user_id}>User</NavLink>
-        <NavLink to="/group">Group</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/" className="site-name">EzMeet</NavLink>
+        <ul>
+            <li><NavLink to="/help" className="active">Help</NavLink></li>
+            <li><NavLink to={"/user/" + user_id} className="active">User</NavLink></li>
+            <li><NavLink to="/group" className="active">Group</NavLink></li>
+            <li><NavLink to="/login" className="active">Login</NavLink></li>
+            <li><NavLink to="/signup" className="active">Sign Up</NavLink></li>
+        </ul>
     </nav>
     )
 }
