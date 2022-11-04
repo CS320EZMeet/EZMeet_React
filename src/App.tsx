@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/index';
 import Home from './pages/home';
 import Login from './pages/login';
 import Help from './pages/help';
-import User from './pages/user';
+import User from './pages/UserProfile';
 import SignUp from './pages/signup';
 import Group from './pages/group';
 import './App.css';
