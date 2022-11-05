@@ -22,16 +22,27 @@ const fetchUserName = async () => {
 
 
 const Navbar = () => {
+<<<<<<< Updated upstream
     /*const {data, isLoading} = useQuery('get-user', fetchUserName)
     if (isLoading) {
         return (<div></div>)
     }*/
+=======
+    // const {data, isLoading} = useQuery('get-user', fetchUserName)
+    // if (isLoading) {
+    //     return (<div></div>)
+    // }
+>>>>>>> Stashed changes
     return (
     <nav className="nav-bar">
         <NavLink to="/" className="site-name">EzMeet</NavLink>
         <ul>
             <li><NavLink to="/help" className="active">Help</NavLink></li>
+<<<<<<< Updated upstream
             <li><NavLink to={"/user/Jake"} className="active">User</NavLink></li>
+=======
+            <li><NavLink to={"/user/Top_G"} className="active">User</NavLink></li>
+>>>>>>> Stashed changes
             <li><NavLink to="/group" className="active">Group</NavLink></li>
             <li><NavLink to="/login" className="active">Login</NavLink></li>
             <li><NavLink to="/signup" className="active">Sign Up</NavLink></li>
