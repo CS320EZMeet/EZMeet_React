@@ -1,6 +1,6 @@
 import React from "react";
-import {Box, Button, TextField} from "@mui/material";
-import { Formik } from "formik";
+import {Box, Button, TextField, Checkbox, FormControlLabel, FormGroup, Typography} from "@mui/material";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -8,9 +8,8 @@ const initialValues = {
     firstName: "Jake",
     lastName: "Paul",
     email: "Jake_Paul@gmail.com",
-    contact: "",
-    address1: "",
-    address2: "",
+    userName: "jakePaul",
+    preferences: [],
 }
 
 const Form = () => {
@@ -77,41 +76,52 @@ const Form = () => {
                                 fullWidth
                                 variant="filled"
                                 type="text"
-                                label="Contact Number"
+                                label="Username"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.contact}
-                                name="contact"
-                                error={!!touched.contact && !!errors.contact}
-                                helperText={touched.contact && errors.contact}
+                                value={values.userName}
+                                name="userName"
+                                disabled={true}
+                                error={!!touched.userName && !!errors.userName}
+                                helperText={touched.userName && errors.userName}
                                 sx={{gridColumn: "span 4"}}
                             />
-                            <TextField 
-                                fullWidth
-                                variant="filled"
-                                type="text"
-                                label="Address 1"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={values.address1}
-                                name="address1"
-                                error={!!touched.address1 && !!errors.address1}
-                                helperText={touched.address1 && errors.address1}
-                                sx={{gridColumn: "span 4"}}
-                            />
-                            <TextField 
-                                fullWidth
-                                variant="filled"
-                                type="text"
-                                label="Address 2"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={values.address2}
-                                name="address2"
-                                error={!!touched.address2 && !!errors.address2}
-                                helperText={touched.address2 && errors.address2}
-                                sx={{gridColumn: "span 4"}}
-                            />
+                            <Typography
+                                variant="h5"
+                                color="#3A3042"
+                                fontWeight="bold"
+                            >
+                                Preferences
+                            </Typography>
+                            <FormGroup>
+                                <FormControlLabel 
+                                    control={
+                                    <Checkbox
+                                        onChange={handleChange}
+                                        name="preferences"
+                                        value="preference1"
+                                    />}
+                                    label="Preference 1"
+                                />
+                                <FormControlLabel 
+                                    control={
+                                    <Checkbox
+                                        onChange={handleChange}
+                                        name="preferences"
+                                        value="preference2"
+                                    />}
+                                    label="Preference 2"
+                                />
+                                <FormControlLabel 
+                                    control={
+                                    <Checkbox
+                                        onChange={handleChange}
+                                        name="preferences"
+                                        value="preference3"
+                                    />}
+                                    label="Preference 3"
+                                />
+                            </FormGroup>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             <Button type="submit" color="primary" variant="contained">
