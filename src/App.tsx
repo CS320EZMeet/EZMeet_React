@@ -10,6 +10,7 @@ import Group from './pages/group';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
+import Invite from './pages/invite';
 
 const App = ()=> (
   <Router>
@@ -22,6 +23,7 @@ const App = ()=> (
       <Route path='/group' element={<Group />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
+      <Route path='/group/invite/:group_id' element={<Invite />} />
     </Routes>
   </div>
   </Router>

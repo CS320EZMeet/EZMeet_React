@@ -4,28 +4,29 @@ import "./navbar.css"
 import {useQuery} from 'react-query'
 import axios from 'axios'
 
-/*
+
 const fetchUserName = async () => {
     //Not a fan of this but fine for now
     let url;
     console.log(window.location.href)
     if (window.location.href === "localhost:3000"){
-        url = "https://localhost:8000/"
+        url = "https://localhost:3000/"
     } else {
         url = "https://ezmeet2022.herokuapp.com/"
     }
-    const res = await axios.get(url+"user/Top%20G").then(response => response.data.data.name)
+    //TODO: ADD USERNAME HERE
+    const res = await axios.get(url+"user/").then(response => response.data.data.name)
     console.log(res)
     return res
 }
-*/    
+   
 
 
 const Navbar = () => {
-    /*const {data, isLoading} = useQuery('get-user', fetchUserName)
+    const {data, isLoading} = useQuery('get-user', fetchUserName)
     if (isLoading) {
-        return (<div></div>)
-    }*/
+        return (<h2>Loading</h2>)
+    }
     return (
     <nav className="nav-bar">
         <NavLink to="/" className="site-name">EzMeet</NavLink>
