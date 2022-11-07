@@ -3,7 +3,7 @@ import Login from '../pages/login';
 
 it('renders login correctly', () => {
     const tree = renderer
-        .create( Login() )
+        .create(<Login />)
         .toJSON();
     expect(tree).toMatchSnapshot();
 });

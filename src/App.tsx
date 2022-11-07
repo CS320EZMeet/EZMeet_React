@@ -4,12 +4,13 @@ import Navbar from './components/Navbar/index';
 import Home from './pages/home';
 import Login from './pages/login';
 import Help from './pages/help';
-import User from './pages/user';
+import User from './pages/UserProfile';
 import SignUp from './pages/signup';
 import Group from './pages/group';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
+import Invite from './pages/invite';
 
 const App = ()=> (
   <Router>
@@ -22,6 +23,7 @@ const App = ()=> (
       <Route path='/group' element={<Group />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
+      <Route path='/group/invite/:group_id' element={<Invite />} />
     </Routes>
   </div>
   </Router>
