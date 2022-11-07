@@ -3,7 +3,8 @@ import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import Togepi from "../../assets/Togepi.jpeg";
 import Anon from "../../assets/anon_pfp.png"
-import './card.css'
+import './card.css';
+import axios from "axios";
 
 const GroupCard = ({ user_id }: { user_id: String }) => {
   return (
@@ -20,9 +21,9 @@ const GroupCard = ({ user_id }: { user_id: String }) => {
   );
 };
 
-const AddCard = () => {
+const AddCard = ({ groupId }: { groupId: number}) => {
   return(
-  <div onClick={()=> alert("finding midpoint")}>
+  <div onClick={()=> alert("Send your friends this link to be added to the group: \nhttps://ezmeet320.herokuapp.com/group/invite/" + groupId)}>
     <Card className="groupCard addCard">
         <Row>
           <Col md={2} lg={2} className="my-auto mx-auto">
@@ -36,5 +37,8 @@ const AddCard = () => {
   </div>
   )
 }
+
+
+
 
 export {GroupCard, AddCard};

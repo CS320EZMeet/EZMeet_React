@@ -15,7 +15,7 @@ body {
 }
 
 .content {
-    background-color: whitesmoke;
+    background-color: bisque;
     margin-top: 2.5%;
     margin-left: 17.5%;
     margin-right: 17.5%;
@@ -33,9 +33,4 @@ code {
 
 .item_card {
     width: 50%;
-}
-
-.add_card {
-    background-color: gray;
-    cursor: pointer;
 }
