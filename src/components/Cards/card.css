@@ -1,3 +1,14 @@
 .groupCard {
-    width: 12rem;
+    font-size: 40px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    align-items: stretch;
+    margin-top: 1%;
+    flex-grow: 1;
+}
+
+.addCard {
+    background-color: #888888 !important;
+    cursor: pointer;
 }

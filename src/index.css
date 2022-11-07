@@ -8,7 +8,6 @@ body {
     background-size: 25rem;
     height: 100%;
     width: 100%;
-    overflow-y: hidden;
 }
 
 #root {
@@ -16,8 +15,8 @@ body {
 }
 
 .content {
-    background-color: whitesmoke;
-    margin-top: 5%;
+    background-color: bisque;
+    margin-top: 2.5%;
     margin-left: 17.5%;
     margin-right: 17.5%;
     text-align: center;
@@ -26,4 +25,12 @@ body {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.map {
+    height: 50%;
+}
+
+.item_card {
+    width: 50%;
 }
