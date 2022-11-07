@@ -1,19 +1,18 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/user/";
+const API_URL = "https://ezmeet2022.herokuapp.com/user/";
 
 class AuthService {
-    login(username: string, password: string) {
+    login(username: String) {
         return axios
-            .post(API_URL + "login", {
+            .post(API_URL + "login/" + username + "/", {
             username,
-            password
         })
             .then(response => {
         if (response.data.accessToken) {
             localStorage.setItem("user", JSON.stringify(response.data));
+            console.log(response.data);
         }
-
         return response.data;
         });
     }
