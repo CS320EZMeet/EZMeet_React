@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import AuthService from "../services/authenticator";
 
 const Invite = () => {
     //send post request
     let {group_id} = useParams()
-    //TODO: Add Username here
-    let username = "Yeet"
+    let username = AuthService.getCurrentUsername();
     let {data, isLoading} = useQuery(['add-user', group_id], () => addUserToGroup(group_id, username))
     if (isLoading) {
         return (<h2>Loading</h2>)

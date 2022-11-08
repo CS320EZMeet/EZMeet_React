@@ -9,7 +9,7 @@ class AuthService {
             username,
         })
             .then(response => {
-        if (response.data.accessToken) {
+        if (true) {
             localStorage.setItem("user", JSON.stringify(response.data));
             console.log(response.data);
         }
@@ -18,6 +18,7 @@ class AuthService {
     }
 
     logout() {
+        console.log("HELLO")
         localStorage.removeItem("user");
     }
 
@@ -33,6 +34,15 @@ class AuthService {
         const userStr = localStorage.getItem("user");
         if (userStr) return JSON.parse(userStr);
 
+        return null;
+    }
+
+    getCurrentUsername() {
+        const userStr = localStorage.getItem("user");
+        if (userStr) {
+            let userName = JSON.parse(userStr);
+            return userName.data[0].username;
+        }
         return null;
     }
 }

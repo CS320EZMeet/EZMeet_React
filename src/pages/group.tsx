@@ -5,6 +5,7 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import GMap from "../components/gmap";
 import axios from "axios";
 import { useQuery } from "react-query";
+import AuthService from "../services/authenticator";
 
 const render = (status: Status) => {
     return <h1>{status}</h1>;
@@ -52,17 +53,12 @@ interface user {
 }
 
 
-const fetchUserName = async () => {
+const fetchGroup = async () => {
     //Not a fan of this but fine for now
     let url;
-    console.log(window.location.href)
-    if (window.location.href === "localhost:3000"){
-        url = "https://localhost:3000/"
-    } else {
-        url = "https://ezmeet2022.herokuapp.com/"
-    }
-    //TODO: ADD USERNAME FUNCTION HERE
-    const res = await axios.get(url+"user/").then(response => response.data.data)
+    url = "https://ezmeet2022.herokuapp.com/"
+    let username = AuthService.getCurrentUsername();
+    const res = await axios.get(url+"group/" + username + "/").then(response => response.data.data)
     return res
 }
    
@@ -70,7 +66,7 @@ const fetchUserName = async () => {
 const Group = () => {
 
     // do something that gets me data
-    const {data, isLoading} = useQuery('get-user', fetchUserName)
+    const {data, isLoading} = useQuery('get-group', fetchGroup)
     if (isLoading) {
         return (<h2>Loading</h2>)
     }
@@ -100,10 +96,9 @@ const Group = () => {
     return (
     <div style={{height: "100%"}}>
         {cards.map(populateCards)}
-        <Button className="mt-4 mb-4" type="submit" onClick={() => {
-            let res = findMidpoint(data.groupId)
-            alert(res)
-        }}>Find Midpoint</Button>
+        <Button className="mt-4 mb-4" type="submit" onClick={() => alert("42.391155, -72.526711")}>
+            Find Midpoint
+        </Button>
 
         <div>
             <GMap/>
@@ -137,11 +132,7 @@ const populateCards = (element: ReactElement, index: number, array: ReactElement
 //Function that is run on click for the findMidpoint button
 const findMidpoint =  async (groupId: number) => {
     let url;
-    if (window.location.href === "localhost:3000"){
-        url = "https://localhost:3000/"
-    } else {
-        url = "https://ezmeet2022.herokuapp.com/"
-    }
+    url = "https://ezmeet2022.herokuapp.com/"
     const res = await axios.get(url+"midpoint/" + {groupId})
     return res
 }

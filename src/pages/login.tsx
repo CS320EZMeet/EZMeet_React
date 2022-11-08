@@ -1,9 +1,9 @@
 import { Component } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import AuthService from "../services/authenticater";
+import AuthService from "../services/authenticator";
 
 type Props = {};
 
@@ -50,7 +50,6 @@ export default class Login extends Component<Props, State> {
 
   handleLogin(formValue: { username: string; password: string }) {
     const { username, password } = formValue;
-
     this.setState({
       message: "",
       loading: true
@@ -59,9 +58,14 @@ export default class Login extends Component<Props, State> {
 
     AuthService.login(username).then(
       () => {
-        this.setState({
-          redirect: "https://ezmeet2022.herokuapp.com/user/login/" + username,
-        });
+        console.log(window.location.href)
+        if (window.location.href === "localhost:3000"){
+          window.location.replace("http://localhost:3000/group");
+        } else {
+          window.location.replace("https://ezmeet320.herokuapp.com/group");
+        }
+       
+        
       },
       error => {
         console.log(error);
