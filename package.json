@@ -29,6 +29,7 @@
         "react-router-dom": "^6.4.2",
         "react-scripts": "5.0.1",
         "react-test-renderer": "^17.0.2",
+        "serve": "^14.0.1",
         "styled-components": "^5.3.6",
         "typescript": "^4.8.4",
         "web-vitals": "^2.1.4",
@@ -39,8 +40,7 @@
         "dev": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "heroku-prebuild": "npm install --dev"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
