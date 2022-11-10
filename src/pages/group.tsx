@@ -52,6 +52,7 @@ interface user {
     latitude: number;
 }
 
+let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080"]
 
 const fetchGroup = async () => {
     //Not a fan of this but fine for now
@@ -75,9 +76,10 @@ const Group = () => {
 
     // let data = sample_response.data;
     var markers: google.maps.LatLng[] = [];//some array
-    
+    let i = 0
     data.users.forEach((element: user) => {
-        cards.push(<GroupCard user_id={element.username}/>)
+        cards.push(<GroupCard user_id={element.username} color={colors[i]}/>)
+        i+=1;
         // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
     });
     cards.push(<AddCard groupId={data.groupId}/>)
@@ -90,11 +92,13 @@ const Group = () => {
     // var bounds = new google.maps.LatLngBounds();
     // for (var i = 0; i < markers.length; i++) {
     //     bounds.extend(markers[i]);
-    // }
-    
+    // }    
     
     return (
     <div style={{height: "100%"}}>
+        <div className="title" >
+            <h1>My Group</h1>
+        </div>
         {cards.map(populateCards)}
         <Button className="mt-4 mb-4" type="submit" onClick={() => alert("42.391155, -72.526711")}>
             Find Midpoint

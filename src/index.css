@@ -27,10 +27,11 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.map {
-    height: 50%;
-}
-
 .item_card {
     width: 50%;
+}
+
+.title {
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
