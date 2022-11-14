@@ -26,8 +26,6 @@ const Navbar = () => {
             <NavLink to="/" className="site-name">EzMeet</NavLink>
             <ul>
                 <li><NavLink to="/help" className="active">Help</NavLink></li>
-                <li><NavLink to={"/user/" + AuthService.getCurrentUsername()} className="active">User</NavLink></li>
-                <li><NavLink to="/group" className="active">Group</NavLink></li>
                 <li><NavLink to="/login" className="active">Login</NavLink></li>
                 <li><NavLink to="/signup" className="active">Sign up</NavLink></li>
             </ul>

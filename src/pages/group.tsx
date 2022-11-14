@@ -124,7 +124,7 @@ const Group = () => {
                     <Button onClick={() => {
                         let url = "https://ezmeet2022.herokuapp.com/";
                         let username = AuthService.getCurrentUsername();
-                        axios.post(url + "group/" + username);
+                        axios.post(url + "group/" + username + "/");
                         setGroup(true);
                     }} className="col btn-lg">Create a group</Button>
                 </div>
