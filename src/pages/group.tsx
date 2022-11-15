@@ -7,7 +7,8 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import AuthService from "../services/authenticator";
 import { useState } from "react";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const render = (status: Status) => {
     return <h1>{status}</h1>;
@@ -149,12 +150,25 @@ const Group = () => {
             i+=1;
             // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
         });
-        cards.push(<AddCard groupId={data.groupId}/>)
-        
-        // cards.map((elem,index) => {
-        //     if (index == )
-        // });
-
+        //need to extract this out
+        cards.push(
+        <Popup modal trigger={<button style={{all: "unset"}}><AddCard groupId={data.groupId}/></button>} position="center center">
+            {(close:any) => (
+            <div className="model">
+                <button className="close" onClick={close}>
+                    &times;
+                </button>
+                <div className="title">Group Invite</div>
+                <div className="justify-content-center d-flex pt-2">
+                    <p style = {{fontSize: "18px"}}>Use this link to add friends to the group</p>
+                </div>
+                <div className="justify-content-center d-flex pb-3">
+                    <input type="text" className="linkField" readOnly value={"https://ezmeet320.herokuapp.com/group/invite/" + data.groupId}></input>
+                </div>
+            </div>
+            )}
+        </Popup>
+        )
     
         // var bounds = new google.maps.LatLngBounds();
         // for (var i = 0; i < markers.length; i++) {

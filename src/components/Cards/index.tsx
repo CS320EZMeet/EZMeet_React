@@ -23,7 +23,7 @@ const GroupCard = ({ user_id, color }: { user_id: String, color: string }) => {
 
 const AddCard = ({ groupId }: { groupId: number}) => {
   return(
-  <div onClick={()=> alert("Send your friends this link to be added to the group: \nhttps://ezmeet320.herokuapp.com/group/invite/" + groupId)}>
+  <div>
     <Card className="groupCard addCard">
         <Row>
           <Col md={2} lg={2} className="my-auto mx-auto">
