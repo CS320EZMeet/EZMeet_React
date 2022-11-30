@@ -3,10 +3,11 @@ import axios from "axios";
 const API_URL = "https://ezmeet2022.herokuapp.com/user/";
 
 class AuthService {
-    login(username: String) {
+    login(username: String, password: String) {
         return axios
             .post(API_URL + "login/" + username + "/", {
             username,
+            password
         })
             .then(response => {
         if (true) {
@@ -22,13 +23,13 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
-    // register(username: string, email: string, password: string) {
-    //     return axios.post(API_URL + "register", {
-    //         username,
-    //         email,
-    //         password
-    //     });
-    // }
+    register(username: string, email: string, password: string) {
+        return axios.post(API_URL + "register/" + username, {
+            username,
+            email,
+            password
+        });
+    }
 
     getCurrentUser() {
         const userStr = localStorage.getItem("user");
@@ -41,7 +42,7 @@ class AuthService {
         const userStr = localStorage.getItem("user");
         if (userStr) {
             let userName = JSON.parse(userStr);
-            return userName.data[0].username;
+            return userName.data.username;
         }
         return null;
     }

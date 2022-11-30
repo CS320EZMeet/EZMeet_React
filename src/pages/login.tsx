@@ -44,7 +44,7 @@ export default class Login extends Component<Props, State> {
   validationSchema() {
     return Yup.object().shape({
       username: Yup.string().required("This field is required!"),
-      // password: Yup.string().required("This field is required!"),
+      password: Yup.string().required("This field is required!"),
     });
   }
 
@@ -56,7 +56,7 @@ export default class Login extends Component<Props, State> {
     });
 
 
-    AuthService.login(username).then(
+    AuthService.login(username, password).then(
       () => {
         console.log(window.location.href)
         if (window.location.href === "localhost:3000"){
