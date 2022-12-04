@@ -1,11 +1,14 @@
-import React, { ReactElement } from "react";
-import {AddCard, GroupCard} from "../components/Cards";
+import React, { ReactElement, useEffect } from "react";
+import {AddCard, GroupCard, PlaceCard} from "../components/Cards";
 import { Button } from "react-bootstrap";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import GMap from "../components/gmap";
 import axios from "axios";
 import { useQuery } from "react-query";
 import AuthService from "../services/authenticator";
+import { useState } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const render = (status: Status) => {
     return <h1>{status}</h1>;
@@ -52,6 +55,7 @@ interface user {
     latitude: number;
 }
 
+let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080"]
 
 const fetchGroup = async () => {
     //Not a fan of this but fine for now
@@ -60,51 +64,6 @@ const fetchGroup = async () => {
     let username = AuthService.getCurrentUsername();
     const res = await axios.get(url+"group/" + username + "/").then(response => response.data.data)
     return res
-}
-   
-
-const Group = () => {
-
-    // do something that gets me data
-    const {data, isLoading} = useQuery('get-group', fetchGroup)
-    if (isLoading) {
-        return (<h2>Loading</h2>)
-    }
-    //once have data lets process it
-    let cards: ReactElement[] = [];
-
-    // let data = sample_response.data;
-    var markers: google.maps.LatLng[] = [];//some array
-    
-    data.users.forEach((element: user) => {
-        cards.push(<GroupCard user_id={element.username}/>)
-        // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
-    });
-    cards.push(<AddCard groupId={data.groupId}/>)
-    
-    // cards.map((elem,index) => {
-    //     if (index == )
-    // });
-
-   
-    // var bounds = new google.maps.LatLngBounds();
-    // for (var i = 0; i < markers.length; i++) {
-    //     bounds.extend(markers[i]);
-    // }
-    
-    
-    return (
-    <div style={{height: "100%"}}>
-        {cards.map(populateCards)}
-        <Button className="mt-4 mb-4" type="submit" onClick={() => alert("42.391155, -72.526711")}>
-            Find Midpoint
-        </Button>
-
-        <div>
-            <GMap/>
-        </div>
-    </div>
-    )
 }
 
 /*
@@ -136,5 +95,109 @@ const findMidpoint =  async (groupId: number) => {
     const res = await axios.get(url+"midpoint/" + {groupId})
     return res
 }
+
+const createGroup = () => {
+    
+}
+
+const Group = () => {
+
+    // do something that gets me data
+    const [inGroup, setGroup] = useState(false);
+    const {data, isLoading} = useQuery('get-group', fetchGroup)
+    
+    useEffect(() => {
+        if (data) {
+            setGroup(true)
+        }
+    }, [data,setGroup])
+    if (isLoading) {
+        return (<h2>Loading</h2>)
+    }
+    console.log(data)
+    if (!data) {
+        return (
+            <div>
+                <div className="row">
+                    <h1>You are not in a group</h1>
+                </div>
+                <div className="row">
+                    <Button onClick={() => {
+                        let url = "https://ezmeet2022.herokuapp.com/";
+                        let username = AuthService.getCurrentUsername();
+                        axios.post(url + "group/" + username + "/");
+                        setGroup(true);
+                    }} className="col btn-lg">Create a group</Button>
+                </div>
+                <div className="row">
+                    <p className="col">OR</p>
+                </div>
+                <div className="col">
+                    <h1>Join a group with a friend's link!</h1>
+                </div>
+            </div>
+        )
+    } else {
+
+        //once have data lets process it
+        let cards: ReactElement[] = [];
+
+        // let data = sample_response.data;
+        let locations: any = []
+        let i = 0
+        data.users.forEach((element: user) => {
+            cards.push(<GroupCard group_id = {data.groupId}user_id={element.username} color={colors[i]}/>)
+            console.log(element.latitude)
+            console.log(element.longitude)
+            locations.push({lat: element.latitude, lng: element.longitude})
+            i+=1;
+            // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
+        });
+        //need to extract this out
+        cards.push(
+        <Popup modal trigger={<button style={{all: "unset"}}><AddCard groupId={data.groupId}/></button>} position="center center">
+            {(close:any) => (
+            <div className="model">
+                <button className="close" onClick={close}>
+                    &times;
+                </button>
+                <div className="title">Group Invite</div>
+                <div className="justify-content-center d-flex pt-2">
+                    <p style = {{fontSize: "18px"}}>Use this link to add friends to the group</p>
+                </div>
+                <div className="justify-content-center d-flex pb-3">
+                    <input type="text" className="linkField" readOnly value={"https://ezmeet320.herokuapp.com/group/invite/" + data.groupId}></input>
+                </div>
+            </div>
+            )}
+        </Popup>
+        )
+    
+        // var bounds = new google.maps.LatLngBounds();
+        // for (var i = 0; i < markers.length; i++) {
+        //     bounds.extend(markers[i]);
+        // }    
+        
+        return (
+        <div style={{height: "100%"}}>
+            <div className="title" >
+                <h1>My Group</h1>
+            </div>
+            {cards.map(populateCards)}
+            <Button className="mt-4 mb-4" type="submit" onClick={() => alert("42.391155, -72.526711")}>
+                Find Midpoint
+            </Button>
+
+            <div>
+                <GMap locations={locations}/>
+            </div>
+            <div>
+                <PlaceCard color={colors[0]}/>
+            </div>
+        </div>
+        )
+    }
+}
+
 
 export default Group;

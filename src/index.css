@@ -27,10 +27,50 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.map {
-    height: 50%;
-}
-
 .item_card {
     width: 50%;
+}
+
+.title {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}
+
+.popup-content {
+    width: 25% !important;
+    background-color: grey!important;
+    border-color: black!important;
+}
+
+.model {
+    width: 100%;
+}
+
+.model>.title {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-bottom: 1px solid black;
+    font-size: 24px;
+    text-align: center;
+    padding: 5px;
+}
+
+.linkField {
+    text-align: center;
+    width: 44ch;
 }
