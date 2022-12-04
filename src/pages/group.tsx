@@ -143,10 +143,13 @@ const Group = () => {
         let cards: ReactElement[] = [];
 
         // let data = sample_response.data;
-        var markers: google.maps.LatLng[] = [];//some array
+        let locations: any = []
         let i = 0
         data.users.forEach((element: user) => {
-            cards.push(<GroupCard user_id={element.username} color={colors[i]}/>)
+            cards.push(<GroupCard group_id = {data.groupId}user_id={element.username} color={colors[i]}/>)
+            console.log(element.latitude)
+            console.log(element.longitude)
+            locations.push({lat: element.latitude, lng: element.longitude})
             i+=1;
             // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
         });
@@ -186,7 +189,7 @@ const Group = () => {
             </Button>
 
             <div>
-                <GMap/>
+                <GMap locations={locations}/>
             </div>
             <div>
                 <PlaceCard color={colors[0]}/>

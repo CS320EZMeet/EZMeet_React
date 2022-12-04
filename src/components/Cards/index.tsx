@@ -1,20 +1,33 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import Anon from "../../assets/anon_pfp.png"
 import './card.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPerson, faLocation } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
-const GroupCard = ({ user_id, color }: { user_id: String, color: string }) => {
+
+const removeUser = async (user: string, group_id: string) => {
+  let url;
+  url = "https://ezmeet2022.herokuapp.com/"
+  const res = await axios.post(url+"group/leave/" + group_id + "/", {userName: user})
+}
+
+const GroupCard = ({ user_id, color, group_id }: { user_id: string, color: string, group_id: string }) => {
   return (
     <Card className="groupCard">
       <Row>
         <Col md={2} lg={2} className="my-auto mx-auto">
           <FontAwesomeIcon icon={faPerson} size="lg" color={color} />
         </Col>
-        <Col className="my-auto mx-auto text-center">
+        <Col md={8} lg={8} className="mx-auto text-center">
           <Card.Text>{user_id}</Card.Text>
+        </Col>
+        <Col className="text-end remove">
+          <h2 onClick={()=>{
+            removeUser(user_id,group_id)
+          }}>X</h2>
         </Col>
       </Row>
     </Card>
@@ -40,7 +53,7 @@ const AddCard = ({ groupId }: { groupId: number}) => {
 
 const PlaceCard = ({ color }: { color: string}) => {
   return(<div>
-    <Card className="groupCard">
+    <Card className="placeCard">
         <Row>
           <Col md={2} lg={2} className="my-auto mx-auto">
             <FontAwesomeIcon icon={faLocation} size="lg" color={color} />
