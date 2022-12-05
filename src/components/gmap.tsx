@@ -84,7 +84,7 @@ export default function GMap(props: GMapProps){
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBrMaLAkS6oSV4nnG6-U-KrQi4fHKhiKB4" }}
         defaultCenter={center}
-        defaultZoom={13}
+        defaultZoom={3}
       >
         {props.peopleLocations.map((elem, index) => {
           return (
