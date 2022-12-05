@@ -55,15 +55,43 @@ interface user {
     latitude: number;
 }
 
-let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080"]
+interface place { 
+    name: string,
+    lat: number,
+    lng: number,
+    address: string
+}
+
+let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080", "#86A29E", "#3AE779", "#F2BFC1", "#76AEB4"]
 
 const fetchGroup = async () => {
     //Not a fan of this but fine for now
     let url;
     url = "https://ezmeet2022.herokuapp.com/"
-    let username = AuthService.getCurrentUsername();
+    // let username = AuthService.getCurrentUsername();
+    let username = "Yeet"
     const res = await axios.get(url+"group/" + username + "/").then(response => response.data.data)
     return res
+}
+
+const fetchLocations = (groupId: string, setPlaceLocation: any) =>() => {
+    let url;
+    url = "https://ezmeet2022.herokuapp.com/"
+   
+    axios.get(url+"midpoint/" + groupId + "/").then((data) => {
+        let tempLoc = data["data"]["data"]
+        console.log("TEMP LOC:" + tempLoc)
+        if(tempLoc.length !== 0) {
+            let newPlaceLocations: place[] = []
+            tempLoc.slice(0,10).map((elem: any) => {
+                newPlaceLocations.push({name: elem[0], lat: elem[1], lng: elem[2], address: elem[3]})
+            })
+            setPlaceLocation(newPlaceLocations);
+        }
+    }).catch(() => {
+        alert("You can't meet up with just yourself!") 
+    })
+    
 }
 
 /*
@@ -88,23 +116,13 @@ const populateCards = (element: ReactElement, index: number, array: ReactElement
     }
 };
 
-//Function that is run on click for the findMidpoint button
-const findMidpoint =  async (groupId: number) => {
-    let url;
-    url = "https://ezmeet2022.herokuapp.com/"
-    const res = await axios.get(url+"midpoint/" + {groupId})
-    return res
-}
-
-const createGroup = () => {
-    
-}
 
 const Group = () => {
-
+    let init: place[] = [];
     // do something that gets me data
     const [inGroup, setGroup] = useState(false);
     const {data, isLoading} = useQuery('get-group', fetchGroup)
+    const [placeLocations, setPlaceLocation] = useState(init)
     
     useEffect(() => {
         if (data) {
@@ -114,7 +132,6 @@ const Group = () => {
     if (isLoading) {
         return (<h2>Loading</h2>)
     }
-    console.log(data)
     if (!data) {
         return (
             <div>
@@ -147,11 +164,8 @@ const Group = () => {
         let i = 0
         data.users.forEach((element: user) => {
             cards.push(<GroupCard group_id = {data.groupId}user_id={element.username} color={colors[i]}/>)
-            console.log(element.latitude)
-            console.log(element.longitude)
             locations.push({lat: element.latitude, lng: element.longitude})
             i+=1;
-            // markers.push(new google.maps.LatLng({lat: element.latitude, lng: element.longitude}))
         });
         //need to extract this out
         cards.push(
@@ -177,27 +191,30 @@ const Group = () => {
         // for (var i = 0; i < markers.length; i++) {
         //     bounds.extend(markers[i]);
         // }    
-        
         return (
         <div style={{height: "100%"}}>
             <div className="title" >
                 <h1>My Group</h1>
             </div>
             {cards.map(populateCards)}
-            <Button className="mt-4 mb-4" type="submit" onClick={() => alert("42.391155, -72.526711")}>
-                Find Midpoint
+            <Button className="mt-4 mb-4" type="submit" onClick={fetchLocations(data.groupId, setPlaceLocation)}>
+                Find Places
             </Button>
 
             <div>
-                <GMap locations={locations}/>
+                <GMap placeLocations={placeLocations} peopleLocations={locations}/>
             </div>
             <div>
-                <PlaceCard color={colors[0]}/>
+                {placeLocations.map((elem:place, index:number) => {
+                    return (
+                        <PlaceCard color={colors[index]} name={elem.name} address={elem.address}/>
+                    )
+                })}
             </div>
+            
         </div>
         )
     }
 }
-
 
 export default Group;

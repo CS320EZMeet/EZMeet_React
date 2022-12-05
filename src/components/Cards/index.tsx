@@ -1,10 +1,10 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Anon from "../../assets/anon_pfp.png"
 import './card.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPerson, faLocation } from "@fortawesome/free-solid-svg-icons";
+import { faPerson, faFlag } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 
@@ -51,16 +51,21 @@ const AddCard = ({ groupId }: { groupId: number}) => {
   )
 }
 
-const PlaceCard = ({ color }: { color: string}) => {
+const PlaceCard = ( {color, name, address} : {color: string, name: string, address: string}) => {
+  let link = "https://www.google.com/maps/dir/?api=1&" + encodeURI(address)
   return(<div>
     <Card className="placeCard">
         <Row>
           <Col md={2} lg={2} className="my-auto mx-auto">
-            <FontAwesomeIcon icon={faLocation} size="lg" color={color} />
+            <FontAwesomeIcon icon={faFlag} size="lg" color={color} />
           </Col>
-          <Col className="my-auto mx-auto text-center">
-            <Card.Text>Papa Pizzeria</Card.Text>
-            <div style={{fontSize: "2vh"}}>5.0/5.0</div>
+          <Col md={8} lg={8} className="my-auto mx-auto text-center">
+            <Card.Text>{name}</Card.Text>
+          </Col>
+          <Col className="my-auto text-end rating">
+            <div style={{fontSize: "2vh"}}>
+              <a href={link}>Directions</a>
+            </div>
           </Col>
         </Row>
       </Card>

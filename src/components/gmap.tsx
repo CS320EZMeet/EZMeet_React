@@ -1,9 +1,8 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPerson } from "@fortawesome/free-solid-svg-icons";
-
-const Marker = (props: any) => {
+import { faFlag, faPerson } from "@fortawesome/free-solid-svg-icons";
+const PeopleMarker = (props: any) => {
 
   return (
     <>
@@ -12,38 +11,89 @@ const Marker = (props: any) => {
   );
 };
 
+const PlaceMarker = (props: any) => {
 
-let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080"]
+  return (
+    <>
+      <FontAwesomeIcon icon={faFlag} size="2xl" color={props.color} />
+    </>
+  );
+};
+
+
+let colors: string[] = ["#A020F0","#FF0000", "#0000FF", "#FFA500", "#964B00", "#808080", "#86A29E", "#3AE779", "#F2BFC1", "#76AEB4"]
 
 interface location {
   lat: number
   lng: number
 }
+interface place { 
+  name: string,
+  lat: number,
+  lng: number,
+  address: string
+}
 
 interface GMapProps {
-  locations: location[] 
+  peopleLocations: location[] 
+  placeLocations: place[]
+}
+
+function calcCenter(props: GMapProps) {
+  let placeLocations = props.placeLocations
+  let peopleLocations = props.peopleLocations
+  console.log(props.peopleLocations)
+  console.log(Object.values(placeLocations))
+  //Prob a fancy reduce which way cleaner to do this
+  let peopleLat = Object.values(peopleLocations).map((elem) => {
+    return elem.lat
+  }).reduce((prev, value) => {
+    return prev + value
+  })
+  let peopleLng = Object.values(peopleLocations).map((elem) => {
+    return elem.lng
+  }).reduce((prev, value) => {
+    return prev + value
+  })
+  if(placeLocations.length !== 0){
+    console.log("in here")
+    let placeLat = Object.values(placeLocations).map((elem) => {
+      return elem.lat
+    }).reduce((prev, value) => {
+      return prev + value
+    })
+    
+    let placeLng = Object.values(placeLocations).map((elem) => {
+      return elem.lng
+    }).reduce((prev, value) => {
+      return prev + value
+    })
+    let total = peopleLocations.length + placeLocations.length
+    return {lat: (peopleLat+placeLat)/total, lng: (peopleLng+placeLng)/total }
+  }
+  let total = peopleLocations.length
+  return {lat: (peopleLat)/total, lng: (peopleLng)/total }
+  
+  
 }
 
 export default function GMap(props: GMapProps){
-  const defaultProps = {
-    center: {
-      lat: 42.3678,
-      lng: -72.5301
-    },
-    zoom: 13 
-  };
-
+  let center = calcCenter(props)
   return (
     <div style={{ height: '40vh', width: '90%', marginLeft: '5%', marginRight: '5%', borderColor: "black"}}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBrMaLAkS6oSV4nnG6-U-KrQi4fHKhiKB4" }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={center}
+        defaultZoom={13}
       >
-        {props.locations.map((elem, index) => {
-          console.log(elem.lat)
+        {props.peopleLocations.map((elem, index) => {
           return (
-            <Marker color={colors[index]} lat={elem.lat} lng = {elem.lng} />
+            <PeopleMarker color={colors[index]} lat={elem.lat} lng = {elem.lng} />
+          )
+        })}
+        {props.placeLocations.map((elem, index) => {
+          return (
+            <PlaceMarker color={colors[index]} lat={elem.lat} lng = {elem.lng} />
           )
         })}
       </GoogleMapReact>
