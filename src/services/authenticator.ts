@@ -43,7 +43,9 @@ class AuthService {
         if (userStr) {
             let userName = JSON.parse(userStr);
             console.log(userName);
-            return userName.data.username;
+            if (userName.data.success === true) {
+                return userName.data.username;
+            } 
         }
         return null;
     }
