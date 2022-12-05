@@ -58,7 +58,7 @@ export default class Login extends Component<Props, State> {
 
     AuthService.login(username, password).then(
       () => {
-        console.log(window.location.href)
+        // console.log(window.location.href)
         // if (window.location.href === "localhost:3000"){
         // window.location.replace("http://localhost:3000/group");
         // } else {
