@@ -14,31 +14,6 @@ const render = (status: Status) => {
     return <h1>{status}</h1>;
 };
 
-let sample_response: groupResponse = 
-{
-    "status": "200",
-    "data":
-    {
-        "groupId": 101,
-        "users": [
-            {
-                "username": "Seb",
-                "latitude": 14.1,
-                "longitude": 13
-            },
-            {
-                "username": "Noa",
-                "latitude": 13.9,
-                "longitude": 13
-            },
-            {
-                "username": "Manay",
-                "latitude": 14,
-                "longitude": 13.00005
-            }
-        ]
-    }
-}
 interface groupResponse {
     status: string;
     data: groupData;
@@ -68,8 +43,7 @@ const fetchGroup = async () => {
     //Not a fan of this but fine for now
     let url;
     url = "https://ezmeet2022.herokuapp.com/"
-    // let username = AuthService.getCurrentUsername();
-    let username = "Yeet"
+    let username = AuthService.getCurrentUsername();
     const res = await axios.get(url+"group/" + username + "/").then(response => response.data.data)
     return res
 }
