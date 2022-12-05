@@ -36,6 +36,11 @@
     font-weight: bold;
 }
 
+.rating {
+    width: 2%;
+    margin-right: 2%;
+}
+
 .remove:hover {
     opacity: 50%;
 }
