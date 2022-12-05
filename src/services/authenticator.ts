@@ -42,6 +42,7 @@ class AuthService {
         const userStr = localStorage.getItem("user");
         if (userStr) {
             let userName = JSON.parse(userStr);
+            console.log(userName);
             return userName.data.username;
         }
         return null;
