@@ -13,9 +13,7 @@ class AuthService {
         if (response.data.success === true) {
             localStorage.setItem("user", JSON.stringify(response.data));
             console.log(response.data);
-        } else {
-            alert("Login failed");
-        }
+        } 
         return response.data;
         });
     }
