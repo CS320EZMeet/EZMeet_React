@@ -60,7 +60,7 @@ export default class Login extends Component<Props, State> {
       () => {
         console.log(window.location.href)
         // if (window.location.href === "localhost:3000"){
-        window.location.replace("http://localhost:3000/group");
+        window.location.replace("http://localhost:3000/help");
         // } else {
         //   window.location.replace("https://ezmeet320.herokuapp.com/group");
         // }
@@ -69,6 +69,8 @@ export default class Login extends Component<Props, State> {
       },
       error => {
         console.log(error);
+        console.log(username);
+        console.log(password);
         const resMessage =
           (error.response &&
             error.response.data &&

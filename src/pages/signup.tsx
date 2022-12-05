@@ -64,16 +64,13 @@ export default class SignUp extends Component<Props, State> {
       successful: false
     });
 
-    AuthService.register(
-      username,
-      email,
-      password
-    ).then(
+    AuthService.register(username, email, password).then(
       response => {
         this.setState({
           message: response.data.message,
           successful: true
         });
+        window.location.replace("http://localhost:3000/login");
       },
       error => {
         const resMessage =

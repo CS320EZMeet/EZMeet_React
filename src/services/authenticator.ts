@@ -6,11 +6,11 @@ class AuthService {
     login(username: String, password: String) {
         return axios
             .post(API_URL + "login/" + username + "/", {
-            username,
-            password
+            username: username,
+            password: password
         })
             .then(response => {
-        if (true) {
+        if (response.data.username) {
             localStorage.setItem("user", JSON.stringify(response.data));
             console.log(response.data);
         }
@@ -24,10 +24,10 @@ class AuthService {
     }
 
     register(username: string, email: string, password: string) {
-        return axios.post(API_URL + "register/" + username, {
-            username,
-            email,
-            password
+        return axios.post(API_URL + "register/" + username + "/", {
+            userName: username,
+            email: email,
+            password: password
         });
     }
 
