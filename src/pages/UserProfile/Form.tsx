@@ -31,6 +31,7 @@ const fetchUser = async () => {
 
 const Form = () => {
     const [edit, setEdit] = React.useState(false);
+    const [buttonText, setButtonText] = React.useState("Edit");
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const {data, isLoading} = useQuery("get-user", fetchUser);
     const [initialValues, setInitialValues] = React.useState<{email: string, userName: string,
@@ -40,11 +41,18 @@ const Form = () => {
         preferences: [],
         show_location: false,
     });
+    const [lastCopy, setLastCopy] = React.useState(initialValues);
     React.useEffect(() => {
         if(data) {
             setInitialValues({
                 email: data.email,
                 userName: data.username,
+                preferences: data.preferences,
+                show_location: data.show_location,
+            })
+            setLastCopy({
+                email: data.email,
+                userName: data.userName,
                 preferences: data.preferences,
                 show_location: data.show_location,
             })
@@ -102,10 +110,25 @@ const Form = () => {
         axios.put(url + username + "/", {
             "user": values
         });
+        setLastCopy({
+            email: initialValues.email,
+            userName: initialValues.userName,
+            preferences: initialValues.preferences,
+            show_location: initialValues.show_location,
+        });
         setEdit(false);
+        setButtonText("Edit");
     }
-    const handleFormEdit = (values: any) => {
-        setEdit(true);
+    const handleFormEdit = () => {
+        if(edit) {
+            setEdit(false);
+            setInitialValues(lastCopy);
+            setButtonText("Edit");
+        }
+        else {
+            setEdit(true);
+            setButtonText("Cancel");
+        }
         console.log("Edit Pressed");
     }
     return(
@@ -237,8 +260,10 @@ const Form = () => {
                             </FormGroup>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            <Button sx= {{"mr":"10px"}} color="primary" variant="contained" onClick={handleFormEdit}>
-                                Edit
+                            <Button sx= {{"mr":"10px"}} color="primary" variant="contained" onClick={() => {
+                                handleFormEdit();
+                            }}>
+                                {buttonText}
                             </Button>
                             <Button type="submit" color="primary" variant="contained" disabled={!edit}>
                                 Save
