@@ -5,6 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import authenticator from "../../services/authenticator";
 import axios from "axios";
 import { useQuery } from "react-query";
+import _ from 'lodash';
 /*
 interface UserDetails {
     username: string,
@@ -122,7 +123,9 @@ const Form = () => {
     const handleFormEdit = () => {
         if(edit) {
             setEdit(false);
-            setInitialValues(lastCopy);
+            if(!_.isEqual(lastCopy, initialValues)) {
+                setInitialValues(lastCopy);
+            }
             setButtonText("Edit");
         }
         else {
