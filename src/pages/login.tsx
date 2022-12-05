@@ -64,8 +64,7 @@ export default class Login extends Component<Props, State> {
         // } else {
         //   window.location.replace("https://ezmeet320.herokuapp.com/group");
         // }
-        window.location.replace("https://ezmeet-dev.herokuapp.com/group")
-        console.log(AuthService.getCurrentUser())
+        //window.location.replace("https://ezmeet-dev.herokuapp.com/group")
       },
       error => {
         console.log(error);
