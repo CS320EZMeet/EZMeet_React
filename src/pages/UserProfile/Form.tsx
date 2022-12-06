@@ -175,6 +175,7 @@ const Form = () => {
                                 value={values.userName}
                                 name="userName"
                                 disabled={true}
+                                InputLabelProps={{shrink: true}}
                                 error={!!touched.userName && !!errors.userName}
                                 helperText={touched.userName && errors.userName}
                                 sx={{gridColumn: "span 4"}}
