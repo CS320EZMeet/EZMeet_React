@@ -76,3 +76,12 @@ code {
     text-align: center;
     width: 44ch;
 }
+
+.helpHeader {
+    padding-top: 2.5%;
+}
+
+.helpTips {
+    text-align: left;
+    padding: 2.5%;
+}
