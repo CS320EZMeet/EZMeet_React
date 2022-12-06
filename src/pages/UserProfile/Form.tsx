@@ -213,7 +213,7 @@ const Form = () => {
                                         name="preferences"
                                         value="restaurant"
                                         disabled={!edit}
-                                        checked={initialValues.preferences.includes("restaurant") ? true : false}
+                                        checked={initialValues?.preferences?.includes("restaurant") ? true : false}
                                     />}
                                     label="Restaurants"
                                 />
@@ -224,7 +224,7 @@ const Form = () => {
                                         name="preferences"
                                         value="nature"
                                         disabled={!edit}
-                                        checked={initialValues.preferences.includes("nature") ? true : false}
+                                        checked={initialValues?.preferences?.includes("nature") ? true : false}
                                     />}
                                     label="Nature"
                                 />
@@ -235,7 +235,7 @@ const Form = () => {
                                         name="preferences"
                                         value="shopping"
                                         disabled={!edit}
-                                        checked={initialValues.preferences.includes("shopping") ? true : false}
+                                        checked={initialValues?.preferences?.includes("shopping") ? true : false}
                                     />}
                                     label="Shopping"
                                 />
@@ -246,7 +246,7 @@ const Form = () => {
                                         name="preferences"
                                         value="entertainment"
                                         disabled={!edit}
-                                        checked={initialValues.preferences.includes("entertainment") ? true : false}
+                                        checked={initialValues?.preferences?.includes("entertainment") ? true : false}
                                     />}
                                     label="Entertainment"
                                 />
@@ -257,7 +257,7 @@ const Form = () => {
                                         name="preferences"
                                         value="museums"
                                         disabled={!edit}
-                                        checked={initialValues.preferences.includes("museums") ? true : false}
+                                        checked={initialValues?.preferences?.includes("museums") ? true : false}
                                     />}
                                     label="Museums"
                                 />
