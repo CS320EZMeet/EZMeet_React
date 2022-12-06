@@ -70,7 +70,7 @@ export default class SignUp extends Component<Props, State> {
           message: response.data.message,
           successful: true
         });
-        window.location.replace("https://ezmeet-dev.herokuapp.com/login");
+        // window.location.replace("https://ezmeet-dev.herokuapp.com/login");
       },
       error => {
         const resMessage =
