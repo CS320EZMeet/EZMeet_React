@@ -21,6 +21,7 @@ class AuthService {
     logout() {
         console.log("Logging out")
         localStorage.removeItem("user");
+        window.location.reload();
     }
 
     register(username: string, email: string, password: string) {
