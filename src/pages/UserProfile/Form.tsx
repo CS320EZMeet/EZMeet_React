@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Button, TextField, Checkbox, FormControlLabel, FormGroup, Typography} from "@mui/material";
+import {Box, Button, TextField, Checkbox, FormControlLabel, FormGroup, Typography, FormLabel, FormControl} from "@mui/material";
 import { Formik } from "formik";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import authenticator from "../../services/authenticator";
@@ -35,6 +35,7 @@ const Form = () => {
     const [buttonText, setButtonText] = React.useState("Edit");
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const {data, isLoading} = useQuery("get-user", fetchUser);
+    const [saveStatus, setSaveStatus] = React.useState(false); //true- disabled, false- not disabled
     const [initialValues, setInitialValues] = React.useState<{email: string, userName: string,
     preferences: string[], show_location: boolean}>({
         email: "",
@@ -42,6 +43,7 @@ const Form = () => {
         preferences: [],
         show_location: false,
     });
+    const error = initialValues.preferences.length === 0;
     const [lastCopy, setLastCopy] = React.useState(initialValues);
     React.useEffect(() => {
         if(data) {
@@ -59,6 +61,14 @@ const Form = () => {
             })
         }
     }, [data]);
+    React.useEffect(() => {
+        if(edit) {
+            setSaveStatus(edit && error);
+        }
+        else {
+            setSaveStatus(true);
+        }
+    }, [edit, error]);
     if(isLoading) {
         return(<h2>Loading</h2>);
     }
@@ -205,7 +215,12 @@ const Form = () => {
                             >
                                 Preferences
                             </Typography>
+                            <FormControl
+                                required
+                                error={error}
+                            >
                             <FormGroup>
+                                <FormLabel component="legend">You need to have a minimum of 1 preference selected</FormLabel>
                                 <FormControlLabel 
                                     control={
                                     <Checkbox
@@ -262,6 +277,7 @@ const Form = () => {
                                     label="Museums"
                                 />
                             </FormGroup>
+                            </FormControl>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
                             <Button sx= {{"mr":"10px"}} color="primary" variant="contained" onClick={() => {
@@ -269,7 +285,7 @@ const Form = () => {
                             }}>
                                 {buttonText}
                             </Button>
-                            <Button type="submit" color="primary" variant="contained" disabled={!edit}>
+                            <Button type="submit" color="primary" variant="contained" disabled={saveStatus}>
                                 Save
                             </Button>
                         </Box>
