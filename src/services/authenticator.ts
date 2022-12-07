@@ -33,7 +33,7 @@ class AuthService {
             .then(response => {
         if (response.data.success === true) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            console.log(response.data);
+            console.log("success register" + response.data);
         }
         return response.data;});
     }
@@ -47,9 +47,10 @@ class AuthService {
 
     getCurrentUsername() {
         const userStr = localStorage.getItem("user");
+        console.log("userStr is" + userStr);
         if (userStr) {
             let userName = JSON.parse(userStr);
-            console.log(userName);
+            console.log("username is" + userName);
             if (userName.success === true) {
                 return userName.data.username;
             } 
