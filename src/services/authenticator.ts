@@ -30,12 +30,12 @@ class AuthService {
             email: email,
             password: password
         })
-            .then(response => {
-        if (response.data.success === true) {
-            localStorage.setItem("user", JSON.stringify(response.data));
-            console.log("success register" + response.data);
-        }
-        return response.data;});
+        //     .then(response => {
+        // if (response.data.success === true) {
+        //     localStorage.setItem("user", JSON.stringify(response.data));
+        //     console.log("success register" + response.data);
+        // }
+        // return response.data;});
     }
 
     getCurrentUser() {
