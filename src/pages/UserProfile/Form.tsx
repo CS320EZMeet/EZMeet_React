@@ -61,6 +61,7 @@ const Form = () => {
             })
         }
     }, [data]);
+    
     React.useEffect(() => {
         if(edit) {
             setSaveStatus(edit && error);
@@ -69,19 +70,11 @@ const Form = () => {
             setSaveStatus(true);
         }
     }, [edit, error]);
+    
     if(isLoading) {
         return(<h2>Loading</h2>);
     }
-    //data.
-    /*
-    data.data.forEach((element: UserDetails) => {
-        initialValues = {
-            email: element.email,
-            userName: element.username,
-            preferences: element.preferences,
-        }
-    });
-    */
+    
     const updateLocation = (value: boolean) => {
         setInitialValues({
             email: initialValues.email,
@@ -161,9 +154,10 @@ const Form = () => {
                             "& > div": {gridColumn: isNonMobile ? undefined : "span 4"}
                         }}
                         >
-                            <TextField 
+                            <TextField
+                                id="user-email" 
                                 fullWidth
-                                variant="filled"
+                                variant="outlined"
                                 type="text"
                                 label="Email"
                                 onBlur={handleBlur}
@@ -177,7 +171,7 @@ const Form = () => {
                             />
                             <TextField 
                                 fullWidth
-                                variant="filled"
+                                variant="outlined"
                                 type="text"
                                 label="Username"
                                 onBlur={handleBlur}
@@ -280,9 +274,7 @@ const Form = () => {
                             </FormControl>
                         </Box>
                         <Box display="flex" justifyContent="end" mt="20px">
-                            <Button sx= {{"mr":"10px"}} color="primary" variant="contained" onClick={() => {
-                                handleFormEdit();
-                            }}>
+                            <Button sx= {{"mr":"10px"}} color="primary" variant="contained" onClick={handleFormEdit}>
                                 {buttonText}
                             </Button>
                             <Button type="submit" color="primary" variant="contained" disabled={saveStatus}>
