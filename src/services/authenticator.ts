@@ -29,7 +29,13 @@ class AuthService {
             userName: username,
             email: email,
             password: password
-        });
+        })
+            .then(response => {
+        if (response.data.success === true) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            console.log(response.data);
+        }
+        return response.data;});
     }
 
     getCurrentUser() {
