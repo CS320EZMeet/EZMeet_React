@@ -104,6 +104,10 @@ export default class Login extends Component<Props, State> {
             onSubmit={this.handleLogin}
           >
             <Form>
+              <div>
+                <h1 className="text-center">Login</h1>
+              </div>
+              <hr />
               <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <Field name="username" type="text" className="form-control" />

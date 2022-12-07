@@ -70,7 +70,7 @@ export default class SignUp extends Component<Props, State> {
           message: response.data.message,
           successful: true
         });
-        window.location.replace("https://ezmeet-dev.herokuapp.com/user");
+        window.location.replace("https://ezmeet-dev.herokuapp.com/user/" + username);
       },
       error => {
         const resMessage =
@@ -109,6 +109,10 @@ export default class SignUp extends Component<Props, State> {
             <Form>
               {!successful && (
                 <div>
+                  <div>
+                    <h1 className="text-center">Register</h1>
+                  </div>
+                  <hr />
                   <div className="form-group">
                     <label htmlFor="username"> Username </label>
                     <Field name="username" type="text" className="form-control" />
