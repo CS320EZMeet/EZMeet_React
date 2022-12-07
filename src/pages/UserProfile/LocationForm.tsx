@@ -18,8 +18,8 @@ const LocationForm = () => {
     const [status, setStatus] = React.useState('');
     const {data, isLoading} = useQuery("get-location", fetchLocation);
     const [initialValues, setInitialValues] = React.useState<{latitude: number, longitude: number, address: string}>({
-        latitude: -1,
-        longitude: -1,
+        latitude: 0.0,
+        longitude: 0.0,
         address: "",
     });
 
