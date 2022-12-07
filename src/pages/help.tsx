@@ -4,7 +4,7 @@ import React from "react";
 const Help = () => {
     return (
     <div>
-        <h1 className="helpHeader">I'm the help page</h1>
+        <h1 className="helpHeader">How to use EzMeet?</h1>
 
         <div className="helpTips">
             <ol>
