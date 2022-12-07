@@ -53,7 +53,7 @@ const AddCard = ({ groupId }: { groupId: number}) => {
 }
 
 const PlaceCard = ( {color, name, address} : {color: string, name: string, address: string}) => {
-  let link = "https://www.google.com/maps/dir/?api=1&query=" + encodeURI(address)
+  let link = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(address)
   return(<div>
     <Card className="placeCard">
         <Row>
