@@ -49,10 +49,10 @@ class AuthService {
         const userStr = localStorage.getItem("user");
         console.log("userStr is" + userStr);
         if (userStr) {
-            let userName = JSON.parse(userStr);
-            console.log("username is" + userName);
-            if (userName.success === true) {
-                return userName.data.username;
+            let userNameStr = JSON.parse(userStr);
+            console.log("username is" + userNameStr.data);
+            if (userNameStr.success === true) {
+                return userNameStr.data.userName;
             } 
         }
         return null;
