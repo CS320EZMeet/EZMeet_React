@@ -177,7 +177,7 @@ const Form = () => {
                                 disabled={true}
                                 InputLabelProps={{shrink: true}}
                                 error={!!touched.userName && !!errors.userName}
-                                helperText={touched.userName && errors.userName}
+                                helperText="Username cannot be changed"
                                 sx={{gridColumn: "span 4"}}
                             />
                             <Typography
