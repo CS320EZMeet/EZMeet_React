@@ -104,7 +104,7 @@ const LocationForm = () => {
                         >
                             <TextField
                                 fullWidth
-                                variant="filled"
+                                variant="outlined"
                                 type="number"
                                 label="Latitude"
                                 onBlur={handleBlur}
@@ -118,7 +118,7 @@ const LocationForm = () => {
                             />
                             <TextField
                                 fullWidth
-                                variant="filled"
+                                variant="outlined"
                                 type="number"
                                 label="Longitude"
                                 onBlur={handleBlur}
@@ -132,7 +132,7 @@ const LocationForm = () => {
                             />
                             <TextField
                                 fullWidth
-                                variant="filled"
+                                variant="outlined"
                                 type="text"
                                 label="Address"
                                 onBlur={handleBlur}
