@@ -118,7 +118,8 @@ const Group = () => {
                         let username = AuthService.getCurrentUsername();
                         axios.post(url + "group/" + username + "/");
                         setGroup(true);
-                    }} className="col btn-lg">Create a group</Button>
+                        window.location.reload();
+                    }} className="col btn">Create a group</Button>
                 </div>
                 <div className="row">
                     <p className="col">OR</p>

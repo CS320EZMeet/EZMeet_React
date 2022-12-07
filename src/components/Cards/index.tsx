@@ -27,6 +27,7 @@ const GroupCard = ({ user_id, color, group_id }: { user_id: string, color: strin
         <Col className="text-end remove">
           <h2 onClick={()=>{
             removeUser(user_id,group_id)
+            window.location.reload()
           }}>X</h2>
         </Col>
       </Row>

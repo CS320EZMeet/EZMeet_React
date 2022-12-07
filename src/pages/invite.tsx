@@ -14,7 +14,7 @@ const Invite = () => {
     } else {
         return (
         <div>
-            <h1>{data}</h1>
+            <h1>You have been added to a group!</h1>
         </div>
         )
     }
